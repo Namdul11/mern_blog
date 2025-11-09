@@ -1,13 +1,8 @@
-/* .form-control {
-  color: yellow;
-}
-.form-control {
-  background-color: black;
+ .form-control {
   border-color: rgba(238, 190, 58, 0.972);
   color: rgba(238, 190, 58, 0.972);
 }
 .form-control:focus {
-  background-color: black;
   color: rgba(238, 190, 58, 0.972);
   border-color: rgba(238, 190, 58, 0.972);
 }
@@ -21,13 +16,11 @@
   border: 1px solid rgba(238, 190, 58, 0.972);
 }
 .ql-editor.ql-blank {
-  background-color: black;
   height: 400px !important;
 }
 .ql-editor {
   height: 400px !important;
-}
-
+} 
 .ql-stroke {
   stroke: rgba(214, 166, 34, 0.972);
 }
@@ -36,33 +29,33 @@
 }
 .ql-picker-item {
   background-color: rgba(238, 190, 58, 0.972) !important;
-  border-color: rgba(238, 190, 58, 0.972);
+  border-color: rgba(238, 190, 58, 0.972) !important;
   background: rgba(238, 190, 58, 0.972) !important;
 }
-
 .ql-snow .ql-picker-options {
-  background-color: rgba(238, 190, 58, 0.972);
+  background-color: rgba(238, 190, 58, 0.972) !important;
 }
 ::after,
 ::before {
   color: black;
 }
-.text-muted {
-  color: rgba(238, 190, 58, 0.972) !important;
-}
+
 .ql-editor > p {
   height: 30px;
-}
-.element.style {
-  color: rgba(238, 190, 58, 0.972);
-  background-color: black;
 }
 p {
   display: inline;
 }
-.ql-container.ql-snow {
-  border: 2px solid rgba(238, 190, 58, 0.972);
-}
 .ql-snow a {
   color: rgba(85, 171, 228, 0.972);
-} */
+}
+.container{
+  color: black;
+}
+ .text-muted {
+  color: rgba(0, 0, 0, 0.972) !important;
+}
+
+.form-control{
+  background-color: white !important;
+}

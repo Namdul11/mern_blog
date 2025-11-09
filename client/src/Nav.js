@@ -1,25 +1,16 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { getUser, logout } from "./helpers";
-import "./Nav.css";
+import "./css/Nav.css";
 
-const Nav = ({ history }) => (
-  <nav>
-    <ul className="nav nav-tabs">
-      <li className="nav-item pr-3 pt-3 pb-3">
-        <Link to="/">Home</Link>
-      </li>
+const AuthenticatedNavLinks = (props) => {
+    const {history} = props;
+       return getUser() &&
+       (
+        <>
       <li className="nav-item pr-3 pt-3 pb-3">
         <Link to="/create">Create a Blog Post</Link>
       </li>
-
-      {!getUser() && (
-        <li className="nav-item ml-auto pr-3 pt-3 pb-3">
-          <Link to="/login">Login</Link>
-        </li>
-      )}
-
-      {getUser() && (
         <li
           onClick={() => logout(() => history.push("/"))}
           className="nav-item ml-auto pr-3 pt-3 pb-3"
@@ -27,7 +18,45 @@ const Nav = ({ history }) => (
         >
           Logout
         </li>
-      )}
+        </>
+       );
+}
+
+const UnAuthenticatedNavLinks = () => {
+  return !getUser() && (
+<>
+        <li className="nav-item ml-auto pr-3 pt-3 pb-3">
+          <Link to="/login">Login</Link>
+        </li>
+</>
+    );
+}
+
+const DefaultNavLinks = () => {
+  return (
+    <>
+      <li className="nav-item pr-3 pt-3 pb-3">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="nav-item pr-3 pt-3 pb-3">
+          <Link to="/blog">Blog</Link>
+      </li>
+      <li className="nav-item pr-3 pt-3 pb-3">
+          <Link to="/about">About</Link>
+      </li>
+      <li className="nav-item pr-3 pt-3 pb-3">
+          <Link to="/donate">Donate</Link>
+      </li>
+    </>
+  )
+}
+
+const Nav = ({ history }) => (
+  <nav>
+    <ul className="nav nav-tabs">
+      <DefaultNavLinks />
+      <AuthenticatedNavLinks history={history} />
+      <UnAuthenticatedNavLinks  />
     </ul>
   </nav>
 );

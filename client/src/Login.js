@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import Nav from "./Nav";
 import { authenticate, getUser } from "./helpers";
-import "./Login.css";
+import "./css/Login.css";
 
 const Login = (props) => {
   // create a state

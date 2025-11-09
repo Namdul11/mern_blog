@@ -1,100 +1,106 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Nav from "./Nav";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import renderHTML from "react-render-html";
-import { getUser, getToken } from "./helpers";
-import "./App.css";
+import Footer from "./Footer";
+import "./css/App.css"; // Keep your general styling here
+
+const Body = () => {
+  return (
+    <div className="text-center my-5">
+      <h1
+        className="fw-bold mb-3"
+        style={{
+          color: "#6d4c41",
+          fontFamily: "'Noto Serif', 'Merriweather', serif",
+          letterSpacing: "1px",
+        }}
+      >
+        Dudjom Tersar Homepage
+      </h1>
+      <p
+        className="lead mx-auto"
+        style={{
+          maxWidth: "650px",
+          color: "#795548",
+          fontFamily: "'Noto Serif', 'Merriweather', serif",
+          lineHeight: "1.8",
+        }}
+      >
+        Welcome to the Dudjom Tersar community — a sacred space dedicated to
+        preserving and practicing the profound teachings of the Nyingma lineage.
+        May this site serve as a source of wisdom, compassion, and inner peace.
+      </p>
+    </div>
+  );
+};
+
+const Section = ({ title, text }) => (
+  <div
+    className="py-5 text-center"
+    style={{
+      backgroundColor: "#fffde7",
+      marginBottom: "2rem",
+      borderRadius: "10px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+    }}
+  >
+    <div className="container">
+      <h3
+        className="fw-semibold mb-3"
+        style={{
+          color: "#6d4c41",
+          fontFamily: "'Noto Serif', 'Merriweather', serif",
+        }}
+      >
+        {title}
+      </h3>
+      <p
+        className="mx-auto"
+        style={{
+          maxWidth: "700px",
+          color: "#8d6e63",
+          fontFamily: "'Noto Serif', 'Merriweather', serif",
+          lineHeight: "1.7",
+        }}
+      >
+        {text}
+      </p>
+    </div>
+  </div>
+);
 
 const App = () => {
-  const [posts, setPosts] = useState([]);
-
-  const fetchPosts = () => {
-    axios
-      .get(`${process.env.REACT_APP_API}/posts`)
-      .then((response) => {
-        // console.log(response);
-        setPosts(response.data);
-      })
-      .catch((error) => alert("Error in fetching posts"));
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const deleteConfirm = (slug) => {
-    let answer = window.confirm("Press OK if you want to delete this post?");
-    if (answer) {
-      deletePost(slug);
-    }
-  };
-
-  const deletePost = (slug) => {
-    // console.log('delete', slug, ' post');
-    axios
-      .delete(`${process.env.REACT_APP_API}/post/${slug}`, {
-        headers: {
-          authorization: `Bearer ${getToken()}`,
-        },
-      })
-      .then((response) => {
-        alert(response.data.message);
-        fetchPosts();
-      })
-      .catch((error) => alert("Error deleting post"));
-  };
-
   return (
-    <div className="container pb-5">
+    <div
+      className="container min-vh-100 d-flex flex-column"
+      style={{
+        background: "linear-gradient(160deg, #fff8e1, #fbe9e7)",
+        fontFamily: "'Noto Serif', 'Merriweather', serif",
+        color: "#5d4037",
+      }}
+    >
       <Nav />
-      <br />
-      <h1 className="title">ValueBlog</h1>
-      <h5 className="tagline">Value for your Time</h5>
-      <hr />
-      {posts.map((post, i) => (
-        <div
-          className="row"
-          key={post._id}
-          style={{ borderBottom: "1px solid yellow" }}
-        >
-          <div className="col pt-3 pb-2">
-            <div className="row">
-              <div className="col-md-10">
-                <Link to={`/post/${post.slug}`}>
-                  <h2>{post.title}</h2>
-                </Link>
-                <div className="lead pt-3">
-                  {renderHTML(post.content.substring(0, 500))}
-                </div>
-                <p>
-                  Maker <span className="badge">{post.user}</span> Published on{" "}
-                  <span className="badge">
-                    {new Date(post.createdAt).toLocaleString()}
-                  </span>
-                </p>
-              </div>
 
-              {getUser() && (
-                <div className="col-md-2">
-                  <Link
-                    to={`/post/update/${post.slug}`}
-                    className="btn btn-sm btn-outline-warning"
-                  >
-                    Update
-                  </Link>
-                  <button
-                    onClick={() => deleteConfirm(post.slug)}
-                    className="btn btn-sm btn-outline-danger ml-1"
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
+      <div className="container my-auto py-5">
+        <Body />
+
+        {/* Filler content sections */}
+        <Section
+          title="About the Lineage"
+          text="The Dudjom Tersar is the collection of revealed teachings (termas) of His Holiness Dudjom Rinpoche, a great master and tertön of the Nyingma school of Tibetan Buddhism. These teachings embody a direct expression of wisdom mind, leading practitioners toward realization and compassion."
+        />
+
+        <Section
+          title="Upcoming Programs"
+          text="Join our online and in-person gatherings with esteemed lamas and instructors. Together we explore the heart essence of the Vajrayana path, integrating ancient wisdom into modern life."
+        />
+
+        <Section
+          title="Community and Practice"
+          text="Our sangha is dedicated to cultivating mindfulness, compassion, and awareness through regular meditation sessions, study programs, and collaborative practice retreats."
+        />
+      </div>
+
+      <Footer />
     </div>
   );
 };

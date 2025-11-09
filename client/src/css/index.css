@@ -1,0 +1,14 @@
+ :root {
+  background: linear-gradient(160deg, #fff8e1, #fbe9e7);
+  height: "100%";
+}
+
+a {
+  color: #6d4c41 !important;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  text-align: center;
+}
