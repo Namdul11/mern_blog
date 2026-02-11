@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 // import controller methods
-const { create, list, read, update, remove } = require('../controllers/post');
-const { requireSignin } = require('../controllers/auth');
+const { create, list, read, update, remove } = require('../controllers/post'); // post bata line
+const { requireSignin } = require('../controllers/auth'); // 
 
 console.log("im in post.js")
 

@@ -62,5 +62,8 @@ exports.remove = (req, res) => {
         });
     });
 };
-
+/* process
+1. create main index/server js file - this file sets up controllers.
+2. 
+ */
 
