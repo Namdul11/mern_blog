@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import ReactQuill from "react-quill";
 import { getToken } from "./helpers";
 import "react-quill/dist/quill.snow.css";
-import "./UpdatePost.css";
+import "./css/UpdatePost.css";
 const modules = {
   toolbar: [
     [{ font: [] }],
